@@ -533,32 +533,26 @@ a:hover {
   transform: scale(1.03);
 }
 
-@media (min-width: 760px) {
-  .stills {
-    grid-template-columns: 1.15fr 0.85fr 1fr;
-    min-height: 280px;
-  }
+.stills .shot,
+.gallery .shot {
+  aspect-ratio: 16 / 10;
+}
 
-  .stills .shot {
-    min-height: 280px;
-  }
+.gallery .shot.portrait {
+  aspect-ratio: 4 / 5;
+}
 
+@media (min-width: 700px) {
+  .stills,
   .gallery {
-    grid-template-columns: 0.9fr 1.1fr 1fr;
-    grid-auto-rows: 240px;
+    grid-template-columns: 1fr 1fr;
   }
+}
 
-  .gallery .tall {
-    grid-row: span 2;
-  }
-
-  .gallery .wide {
-    grid-column: span 2;
-  }
-
-  .gallery .banner {
-    grid-column: 1 / -1;
-    grid-row: span 2;
+@media (min-width: 1000px) {
+  .stills,
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -678,6 +672,12 @@ a:hover {
 
 .page-hero h1 {
   font-size: clamp(4rem, 12vw, 7rem);
+}
+
+.banner-still {
+  margin-top: 1.5rem;
+  width: min(100%, 920px);
+  border: 1px solid var(--line);
 }
 
 .site-footer {
