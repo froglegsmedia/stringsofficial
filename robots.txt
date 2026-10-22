@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://froglegsmedia.github.io/stringsofficial/sitemap.xml
+Sitemap: https://www.stringsofficial.com/sitemap.xml

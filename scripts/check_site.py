@@ -23,6 +23,9 @@ REQUIRED = [
     "Killamind",
     "Plays Kel",
     "© 2026 Scary Romantic",
+    "https://www.stringsofficial.com/",
+    "https://www.stringsofficial.com/filmmakers/",
+    "https://www.stringsofficial.com/sitemap.xml",
     "https://instagram.com/stringsmovie",
     'property="og:image"',
     'name="twitter:card"',
@@ -82,7 +85,8 @@ def main():
     pages = sorted(ROOT.glob("**/*.html"))
     if not pages:
         errors.append("no HTML pages found")
-    combined = "\n".join(page.read_text(encoding="utf-8") for page in pages)
+    combined_paths = pages + [ROOT / "robots.txt", ROOT / "sitemap.xml"]
+    combined = "\n".join(path.read_text(encoding="utf-8") for path in combined_paths if path.is_file())
 
     for phrase in REQUIRED:
         if phrase not in combined:
@@ -95,9 +99,12 @@ def main():
             errors.append(f"forbidden phrase present: {phrase}")
 
     for path in content_files:
-        match = STATUS_WORDS.search(path.read_text(encoding="utf-8"))
+        text = path.read_text(encoding="utf-8")
+        match = STATUS_WORDS.search(text)
         if match:
             errors.append(f"{path.relative_to(ROOT)}: status word {match.group(0)!r}")
+        if "froglegsmedia.github.io" in text:
+            errors.append(f"{path.relative_to(ROOT)}: still points at github.io")
 
     phone = re.search(r"(?:\+?1[\s.-]?)?(?:\(?\d{3}\)?[\s.-]?)\d{3}[\s.-]\d{4}", blob)
     if phone:
