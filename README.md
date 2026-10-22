@@ -1,7 +1,21 @@
 # STRINGS
 
-Official site for STRINGS, Tyler Forrest’s music drama. Plain HTML and CSS, ready for GitHub Pages.
+Official site for STRINGS, a music drama from Scary Romantic. Static HTML, CSS, and JavaScript, served by GitHub Pages.
 
 Preview: https://froglegsmedia.github.io/stringsofficial/
 
-Paths are relative, so styles, scripts, and images resolve under that project subpath. There is no custom domain on this preview.
+Paths are relative, so the pages work on that project URL and on the custom domain. `CNAME` is `www.stringsofficial.com`. DNS at the registrar is separate and is not changed from this repo.
+
+Canonical and Open Graph URLs use the GitHub Pages address above. Update those, and `sitemap.xml`, when www.stringsofficial.com is serving this site.
+
+## Preview
+
+```bash
+python3 -m http.server 8765
+```
+
+## Check
+
+```bash
+python3 scripts/check_site.py
+```
