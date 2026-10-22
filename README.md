@@ -4,9 +4,9 @@ Official site for STRINGS, a music drama from Scary Romantic. Static HTML, CSS, 
 
 Preview: https://froglegsmedia.github.io/stringsofficial/
 
-Paths are relative, so the pages work on that project URL. This repo does not include a CNAME. The custom domain stays where it is until it is switched over separately.
+Paths are relative, so the pages work on that project URL and on the custom domain. `CNAME` is `www.stringsofficial.com`. DNS at the registrar is separate and is not changed from this repo.
 
-Canonical and Open Graph URLs use the GitHub Pages address above. Update those, and `sitemap.xml`, when the public domain starts serving this site.
+Canonical and Open Graph URLs use the GitHub Pages address above. Update those, and `sitemap.xml`, when www.stringsofficial.com is serving this site.
 
 ## Preview
 

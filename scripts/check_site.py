@@ -74,8 +74,10 @@ def local_target(html_path, url):
 
 def main():
     errors = []
-    if (ROOT / "CNAME").exists():
-        errors.append("CNAME must not be added; the domain is switched separately")
+    cname_path = ROOT / "CNAME"
+    cname = cname_path.read_text(encoding="utf-8").strip() if cname_path.is_file() else ""
+    if cname != "www.stringsofficial.com":
+        errors.append("CNAME must contain www.stringsofficial.com")
 
     pages = sorted(ROOT.glob("**/*.html"))
     if not pages:
