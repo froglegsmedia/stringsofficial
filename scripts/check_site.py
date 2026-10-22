@@ -13,14 +13,12 @@ VOID = {
     "param", "source", "track", "wbr", "path",
 }
 REQUIRED = [
-    "A music drama from Scary Romantic. Now complete. Premiered to a packed house at AMC CityWalk.",
-    "Feature film",
-    "Completed 2026",
-    "Distribution inquiries",
+    "A music drama from Scary Romantic.",
+    "Distribution and press",
     "contact@scaryromantic.com",
     "f74UleON9DM",
     "Tye is a passionate songwriter",
-    "His latest feature, Strings, is complete and in conversations with distributors, with Balistyx and Suicide Disco nearing completion.",
+    "His latest feature is Strings.",
     "Kasey Yale",
     "Killamind",
     "Plays Kel",
@@ -35,11 +33,11 @@ FORBIDDEN = [
     "raw cut",
     "raw director",
     "coming soon",
-    "nearing completion (strings",
     "985-705-1628",
     "9857051628",
     "tel:",
 ]
+STATUS_WORDS = re.compile(r"\b(?:complete|completed|completion|finished|premiere|premiered)\b", re.I)
 
 
 class Balancer(HTMLParser):
@@ -93,6 +91,11 @@ def main():
     for phrase in FORBIDDEN:
         if phrase in blob:
             errors.append(f"forbidden phrase present: {phrase}")
+
+    for path in content_files:
+        match = STATUS_WORDS.search(path.read_text(encoding="utf-8"))
+        if match:
+            errors.append(f"{path.relative_to(ROOT)}: status word {match.group(0)!r}")
 
     phone = re.search(r"(?:\+?1[\s.-]?)?(?:\(?\d{3}\)?[\s.-]?)\d{3}[\s.-]\d{4}", blob)
     if phone:

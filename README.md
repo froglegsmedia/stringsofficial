@@ -1,6 +1,6 @@
 # STRINGS
 
-Official site for STRINGS, a completed music drama from Scary Romantic. Static HTML, CSS, and JavaScript, served by GitHub Pages.
+Official site for STRINGS, a music drama from Scary Romantic. Static HTML, CSS, and JavaScript, served by GitHub Pages.
 
 Preview: https://froglegsmedia.github.io/stringsofficial/
 
