@@ -104,9 +104,18 @@ a:hover {
 }
 
 .site-header.is-solid {
-  background: rgba(16, 24, 27, 0.92);
+  background: transparent;
   border-bottom-color: var(--line);
+}
+
+.site-header.is-solid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(16, 24, 27, 0.92);
   backdrop-filter: blur(16px);
+  pointer-events: none;
 }
 
 .visually-hidden {
