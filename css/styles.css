@@ -1147,11 +1147,13 @@ body.donate-page {
 }
 
 .donate-amount {
-  font-family: var(--display);
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  font-size: 1.28em;
-  line-height: 0.9;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 600;
+  font-style: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  vertical-align: baseline;
   color: var(--brass);
 }
 
