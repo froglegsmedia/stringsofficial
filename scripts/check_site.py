@@ -29,6 +29,16 @@ REQUIRED = [
     "© 2026 Scary Romantic",
     "https://www.stringsofficial.com/",
     "https://www.stringsofficial.com/filmmakers/",
+    "https://www.stringsofficial.com/donate/",
+    "Donate to the Project",
+    "Help Us Finish Strings",
+    "From the Heart Productions, Inc.",
+    "95-4445418",
+    "1013 Harbor Blvd #53",
+    "Oxnard, CA 93035",
+    "tyler@tylerforrest.com",
+    "Donate with PayPal",
+    'id="donate-qr" hidden',
     "https://www.stringsofficial.com/sitemap.xml",
     "https://instagram.com/stringsmovie",
     'property="og:image"',
@@ -121,8 +131,30 @@ def main():
     if phone:
         errors.append(f"phone number present: {phone.group(0)}")
 
+    donate_js_path = ROOT / "js" / "donate.js"
+    if not donate_js_path.is_file():
+        errors.append("js/donate.js is missing")
+    else:
+        donate_js = donate_js_path.read_text(encoding="utf-8")
+        if not re.search(r"(?m)^var DONATE_URL\s*=", donate_js):
+            errors.append("js/donate.js: missing DONATE_URL")
+        if not re.search(r"(?m)^var DONATE_QR_SRC\s*=", donate_js):
+            errors.append("js/donate.js: missing DONATE_QR_SRC")
+        if "—" in donate_js or "louisiana" in donate_js.lower():
+            errors.append("js/donate.js: em dash or Louisiana")
+
+    donate_page = ROOT / "donate" / "index.html"
+    if donate_page.is_file():
+        donate_html = donate_page.read_text(encoding="utf-8")
+        if "—" in donate_html or "louisiana" in donate_html.lower():
+            errors.append("donate/index.html: em dash or Louisiana")
+    else:
+        errors.append("donate/index.html is missing")
+
     for page in pages:
         html = page.read_text(encoding="utf-8")
+        if "Donate to the Project" not in html:
+            errors.append(f"{page.relative_to(ROOT)}: missing Donate to the Project link")
         balancer = Balancer(page.relative_to(ROOT).as_posix())
         balancer.feed(html)
         balancer.close()
