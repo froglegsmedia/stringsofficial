@@ -1109,6 +1109,17 @@ a:hover {
   line-height: 1;
 }
 
+body.donate-page {
+  --header: calc(4.25rem + env(safe-area-inset-top));
+}
+
+@media (max-width: 1179px) {
+  body.donate-page .site-header {
+    grid-template-areas: "mark toggle";
+    row-gap: 0;
+  }
+}
+
 .donate-hero {
   padding-top: calc(var(--header) + 1.15rem);
   padding-bottom: 0;
@@ -1144,12 +1155,34 @@ a:hover {
   color: var(--brass);
 }
 
-.donate-tax {
-  margin: 0.9rem 0 0;
+.donate-trust {
+  padding: 1.15rem 1.05rem 1.3rem;
+  background:
+    linear-gradient(165deg, rgba(198, 163, 106, 0.16), transparent 62%),
+    var(--ink-2);
+  border: 1px solid var(--line);
+}
+
+.donate-trust p {
+  margin: 0.8rem 0 0;
   max-width: 42rem;
   color: var(--cream-dim);
-  font-size: 1rem;
+  font-size: 1.02rem;
   line-height: 1.55;
+}
+
+.donate-trust .text-link {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 2.75rem;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+
+.donate-trust + .donate-block {
+  margin-top: 1.75rem;
+  padding-top: 0.35rem;
 }
 
 .donate-pay {

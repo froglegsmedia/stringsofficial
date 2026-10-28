@@ -39,6 +39,10 @@ REQUIRED = [
     "tyler@tylerforrest.com",
     "Donate with PayPal",
     'id="donate-qr" hidden',
+    "over 30 years",
+    "Funds go through From the Heart to support the film.",
+    "Get more info on From the Heart",
+    "https://www.fromtheheartproductions.com",
     "https://www.stringsofficial.com/sitemap.xml",
     "https://instagram.com/stringsmovie",
     'property="og:image"',
@@ -148,13 +152,18 @@ def main():
         donate_html = donate_page.read_text(encoding="utf-8")
         if "—" in donate_html or "louisiana" in donate_html.lower():
             errors.append("donate/index.html: em dash or Louisiana")
+        if 'class="header-donate"' in donate_html:
+            errors.append("donate/index.html: header donate button should be hidden")
+        if 'target="_blank"' not in donate_html or "www.fromtheheartproductions.com" not in donate_html:
+            errors.append("donate/index.html: missing From the Heart link")
     else:
         errors.append("donate/index.html is missing")
 
     for page in pages:
         html = page.read_text(encoding="utf-8")
-        if "Donate to the Project" not in html:
-            errors.append(f"{page.relative_to(ROOT)}: missing Donate to the Project link")
+        if page.name != "index.html" or page.parent.name != "donate":
+            if 'class="header-donate"' not in html or "Donate to the Project" not in html:
+                errors.append(f"{page.relative_to(ROOT)}: missing Donate to the Project link")
         balancer = Balancer(page.relative_to(ROOT).as_posix())
         balancer.feed(html)
         balancer.close()
