@@ -1,6 +1,6 @@
 // PayPal link and QR image. Replace these two values when they are ready.
 // DONATE_QR_SRC: "assets/donate-qr.png" or a full https URL. Leave "" to hide the QR.
-var DONATE_URL = "#";
+var DONATE_URL = "https://www.paypal.com/donate/?hosted_button_id=KAPWYJ6Y4DD6A";
 var DONATE_QR_SRC = "";
 
 (function () {
@@ -13,6 +13,8 @@ var DONATE_QR_SRC = "";
   if (button) {
     if (live) {
       button.href = url;
+      button.target = "_blank";
+      button.rel = "noopener noreferrer";
       button.removeAttribute("aria-disabled");
     } else {
       button.setAttribute("aria-disabled", "true");
