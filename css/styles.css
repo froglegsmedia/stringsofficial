@@ -1171,6 +1171,20 @@ body.donate-page {
   line-height: 1.55;
 }
 
+.donate-trust + .donate-trust {
+  margin-top: 1.75rem;
+}
+
+.donate-trust:has(.donate-anon) > p:first-child {
+  margin-top: 0;
+}
+
+.donate-trust .donate-anon {
+  margin-top: 0.4rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
 .donate-trust .text-link {
   display: inline-flex;
   align-items: center;
